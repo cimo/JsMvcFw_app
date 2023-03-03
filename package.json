@@ -1,0 +1,40 @@
+{
+    "name": "jsmvcfw_app",
+    "version": "1.0.0",
+    "description": "App created with JsMvcFw",
+    "author": "cimo",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/cimo/JsMvcFw_app.git"
+    },
+    "main": "./src/index.ts",
+    "scripts": {
+        "preinstall": "npm install --package-lock-only --ignore-scripts --no-audit && npx npm-force-resolutions@0.0.3",
+        "link": "npm link /home/root/project/jsmvcfw/root/ && npm run execute",
+        "sass": "sass --watch ./src/style/main.scss ./public/css/main.css",
+        "execute": "webpack serve --config webpack.execute.js",
+        "build": "webpack --config webpack.build.js"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "typescript": "4.9.4",
+        "eslint": "8.35.0",
+        "sass": "1.57.1",
+        "dotenv": "16.0.3",
+        "webpack": "5.75.0",
+        "webpack-cli": "5.0.1",
+        "webpack-dev-server": "4.11.1",
+        "html-webpack-plugin": "5.5.0",
+        "copy-webpack-plugin": "11.0.0",
+        "clean-webpack-plugin": "4.0.0",
+        "compression-webpack-plugin": "10.0.0",
+        "ts-loader": "9.4.2",
+        "@typescript-eslint/parser": "5.54.0",
+        "@typescript-eslint/eslint-plugin": "5.54.0"
+    },
+    "resolutions": {
+        "node-fetch": "2.6.7",
+        "**/node-fetch": "2.6.7"
+    }
+}
