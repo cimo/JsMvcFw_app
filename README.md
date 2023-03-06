@@ -1,6 +1,8 @@
 # JsMvcFw_app
 
-- Use npm link
+Demo app (depend from "JsMvcFw" library).
+
+## Setup
 
 1. Write on terminal:
 ```

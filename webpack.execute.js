@@ -35,8 +35,8 @@ module.exports = {
         hot: true,
         https: true,
         https: {
-            key: Fs.readFileSync("/home/root/certificate/selfsign/Encrypted.key"),
-            cert: Fs.readFileSync("/home/root/certificate/selfsign/Encrypted.crt")
+            key: Fs.readFileSync("/home/root/certificate/tls.key"),
+            cert: Fs.readFileSync("/home/root/certificate/tls.crt")
         }
     },
     mode: NODE_ENV,
