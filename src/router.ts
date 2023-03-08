@@ -1,10 +1,10 @@
-import { Router } from "jsmvcfw";
+import { Irouter } from "jsmvcfw";
 
 // Source
 import controllerHome from "@/controller/Home";
 import controllerTest from "@/controller/Test";
 
-const router = (): Router[] => {
+const router = (): Irouter[] => {
     return [
         {
             title: "HOME",

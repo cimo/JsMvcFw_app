@@ -1,6 +1,6 @@
-import { View, ItemList } from "jsmvcfw";
+import { Iview, IitemList } from "jsmvcfw";
 
-const test = (propList: ItemList): View => {
+const test = (propList: IitemList): Iview => {
     return {
         content: String.raw`
         <div>

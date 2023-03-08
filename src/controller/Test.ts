@@ -1,14 +1,14 @@
-import { Controller, ItemList, variableState, storeGet, storeSet, navigateTo, sendRequest, writeLog } from "jsmvcfw";
+import { Icontroller, IitemList, variableState, storeGet, storeSet, navigateTo, sendRequest, writeLog } from "jsmvcfw";
 
 // Source
-import { RequestResponse } from "@/model/Test";
+import { IrequestResponse } from "@/model/Test";
 import viewTest from "@/view/Test";
 
-const test = (): Controller => {
+const test = (): Icontroller => {
     return {
         variableList() {
             return {
-                /*propList: variableState<ItemList>({ data: { pageContent: "TEST content" } }),
+                /*propList: variableState<IitemList>({ data: { pageContent: "TEST content" } }),
                 buttonHome: variableState<HTMLElement | undefined>(undefined),
                 buttonSendRequestPost: variableState<HTMLElement | undefined>(undefined),
                 buttonSendRequestGet: variableState<HTMLElement | undefined>(undefined),
@@ -50,7 +50,7 @@ const test = (): Controller => {
                     variableList.buttonSendRequestPost.state.addEventListener("click", () => {
                         variableList.containerResponse.state.innerHTML = "";
 
-                        sendRequest<RequestResponse>("https://c5cf11f2-1a2a-4e41-9679-14b99d59bf39.mock.pstmn.io/requestPost", "POST", { a: 1 }).then((response) => {
+                        sendRequest<IrequestResponse>("https://c5cf11f2-1a2a-4e41-9679-14b99d59bf39.mock.pstmn.io/requestPost", "POST", { a: 1 }).then((response) => {
                             writeLog("/Controller/Test.ts", "event - post", { response });
 
                             variableList.containerResponse.state.innerHTML = response.data;
@@ -62,7 +62,7 @@ const test = (): Controller => {
                     variableList.buttonSendRequestGet.state.addEventListener("click", () => {
                         variableList.containerResponse.state.innerHTML = "";
 
-                        sendRequest<RequestResponse>("https://c5cf11f2-1a2a-4e41-9679-14b99d59bf39.mock.pstmn.io/requestGet", "GET").then((response) => {
+                        sendRequest<IrequestResponse>("https://c5cf11f2-1a2a-4e41-9679-14b99d59bf39.mock.pstmn.io/requestGet", "GET").then((response) => {
                             writeLog("/Controller/Test.ts", "event - get", { response });
 
                             variableList.containerResponse.state.innerHTML = response.data;

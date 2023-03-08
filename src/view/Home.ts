@@ -1,6 +1,6 @@
-import { View } from "jsmvcfw";
+import { Iview } from "jsmvcfw";
 
-const home = (variableList: Record<string, any>): View => {
+const home = (variableList: Record<string, unknown>): Iview => {
     return {
         content: String.raw`
         <div>
