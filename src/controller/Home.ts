@@ -1,4 +1,4 @@
-import { Icontroller, IitemList, IvariableState, variableState, storeSet, storeRemove, navigateTo, writeLog } from "jsmvcfw";
+import { Icontroller, IitemList, variableState, storeSet, storeRemove, navigateTo, writeLog } from "jsmvcfw/dist/";
 
 // Source
 import viewHome from "@/view/Home";
@@ -25,54 +25,53 @@ const home = (): Icontroller => {
     return {
         variableList() {
             return {
-                varTest: variableState<number>(1)
-                /*propList: variableState<IitemList>({ data: { pageContent: "HOME content" } }),
+                propList: variableState<IitemList>({ data: { pageContent: "HOME content" } }),
                 storeHome: variableState<IitemList>({ data: { a: 1, b: 2 } }),
                 buttonTest: variableState<HTMLElement | undefined>(undefined),
                 buttonCounter: variableState<HTMLElement | undefined>(undefined),
-                varTest: variableState<number>(1)*/
+                varTest: variableState<number>(1)
             }
         },
-        create(variableList: Record<string, IvariableState>) {
+        create(variableList) {
             writeLog("/Controller/Home.ts", "create", {});
 
             //storeSet("storeHome", variableList.storeHome.state);
 
-            const varTest = variableList.varTest;
-
-            varTest.listener((value: number) => {
+            variableList.varTest.listener((value) => {
                 writeLog("/Controller/Home.ts", "listener", { value });
             });
         },
-        view(variableList: Record<string, IvariableState>) {
+        view(variableList) {
             writeLog("/Controller/Home.ts", "view", {});
 
             return viewHome(variableList).content;
         },
-        event(variableList: Record<string, IvariableState>) {
+        event(variableList) {
             writeLog("/Controller/Home.ts", "event", {});
 
-            if (variableList.buttonTest) {
-                variableList.buttonTest.state = document.querySelector("#buttonTest") as HTMLButtonElement;
-                variableList.buttonTest.state.addEventListener("click", () => {
+            //if (variableList.buttonTest) {
+                const buttonTestElement = document.querySelector("#buttonTest") as HTMLButtonElement;
+
+                buttonTestElement.addEventListener("click", () => {
                     navigateTo(undefined, "/test");
                 });
-            }
 
-            /*if (variableList.buttonCounter) {
-                variableList.buttonCounter.state = document.querySelector("#buttonCounter");
-                variableList.buttonCounter.state.addEventListener("click", () => {
-                    variableList.varTest.state ++;
+                variableList.buttonTest.state = buttonTestElement;
+            //}
+
+            //if (variableList.buttonCounter) {
+                const buttonCounterTest = document.querySelector("#buttonCounter") as HTMLButtonElement;
+
+                let count = 0;
+
+                buttonCounterTest.addEventListener("click", () => {
+                    count ++;
+
+                    variableList.varTest.state = count;
                 });
-            }*/
 
-            const element = document.querySelector("#buttonCounter");
-
-            if (element) {
-                element.addEventListener("click", () => {
-                    variableList.varTest.state ++;
-                });
-            }
+                variableList.buttonCounter.state = buttonCounterTest;
+            //}
         },
         destroy() {
             writeLog("/Controller/Home.ts", "destroy", {});

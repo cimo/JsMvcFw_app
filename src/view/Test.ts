@@ -1,4 +1,4 @@
-import { Iview, IitemList } from "jsmvcfw";
+import { Iview, IitemList } from "jsmvcfw/dist/";
 
 const test = (propList: IitemList): Iview => {
     return {

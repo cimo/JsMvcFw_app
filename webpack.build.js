@@ -8,7 +8,7 @@ const Path = require("path");
 const Fs = require("fs");
 
 // Source
-const { checkEnvVariable } = require("jsmvcfw");
+const { checkEnvVariable } = require("jsmvcfw/dist/");
 
 const ENV_NAME = checkEnvVariable("ENV_NAME", process.env.ENV_NAME);
 

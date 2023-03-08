@@ -1,4 +1,4 @@
-import { Irouter } from "jsmvcfw";
+import { Irouter } from "jsmvcfw/dist/";
 
 // Source
 import controllerHome from "@/controller/Home";

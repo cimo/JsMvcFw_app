@@ -1,7 +1,9 @@
-import { mainInit, routerInit } from "jsmvcfw";
+import { mainInit, routerInit } from "jsmvcfw/dist/";
 
 // Source
 import router from "@/router";
 
 mainInit(true);
-routerInit(router());
+
+const routerApp = router();
+routerInit(routerApp);
