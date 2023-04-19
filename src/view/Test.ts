@@ -13,7 +13,7 @@ const test = (propList: IitemList): Iview => {
             </div>
             <p id="containerResponse"></p>
         </div>`
-    }
-}
+    };
+};
 
 export default test;

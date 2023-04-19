@@ -1,8 +1,8 @@
 import { Irouter } from "jsmvcfw/dist/";
 
 // Source
-import controllerHome from "@/controller/Home";
-import controllerTest from "@/controller/Test";
+import controllerHome from "./controller/Home";
+import controllerTest from "./controller/Test";
 
 const router = (): Irouter[] => {
     return [
@@ -17,6 +17,6 @@ const router = (): Irouter[] => {
             controller: controllerTest
         }
     ];
-}
+};
 
 export default router;

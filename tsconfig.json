@@ -14,11 +14,8 @@
         "noImplicitAny": false,
         "baseUrl": "./",
         "outDir": "./dist/",
-        "lib": ["ES2016", "DOM", "DOM.Iterable"],
-        "paths": {
-            "@/*": ["src/*"]
-        }
+        "lib": ["ES2016", "DOM", "DOM.Iterable"]
     },
-    "include": ["src/**/*.ts"],
-    "exclude": ["node_modules", "dist", "public"]
+    "include": ["src/**/*.ts", "/**/*.js", ".eslintrc.js"],
+    "exclude": ["dist", "node_modules", "public"]
 }

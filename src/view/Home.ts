@@ -1,5 +1,8 @@
 import { Iview, IvariableState } from "jsmvcfw/dist/";
 
+// Source
+import { IcontrollerHome } from "../model/Home";
+
 const home = (variableList: Record<string, IvariableState>): Iview => {
     return {
         content: String.raw`
@@ -14,9 +17,9 @@ const home = (variableList: Record<string, IvariableState>): Iview => {
 
                 return a;
             })()}</p>
-            <p>Counter: ${ variableList.varTest.state }</p>
+            <p>Counter: ${variableList.varCounter.state}</p>
         </div>`
-    }
-}
+    };
+};
 
 export default home;

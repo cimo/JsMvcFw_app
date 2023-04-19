@@ -1,3 +1,5 @@
+/*eslint-env node*/
+/* eslint-disable @typescript-eslint/no-var-requires */
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
@@ -15,10 +17,10 @@ const ENV_NAME = checkEnvVariable("ENV_NAME", process.env.ENV_NAME);
 require("dotenv").config({ path: `./env/${ENV_NAME}.env` });
 
 checkEnvVariable("DOMAIN", process.env.DOMAIN);
-const DEBUG = checkEnvVariable("DEBUG", process.env.DEBUG);
-const PORT_HTTPS = checkEnvVariable("NODEJS_PORT_HTTPS", process.env.NODEJS_PORT_HTTPS);
-const NODE_ENV = checkEnvVariable("NODE_ENV", process.env.NODEJS_ENV);
-const PUBLIC_PATH = checkEnvVariable("PUBLIC_PATH", process.env.PUBLIC_PATH);
+const NODE_ENV = checkEnvVariable("JSMVCFW_APP_NODE_ENV", process.env.JSMVCFW_APP_NODE_ENV);
+const DEBUG = checkEnvVariable("JSMVCFW_APP_DEBUG", process.env.JSMVCFW_APP_DEBUG);
+const PUBLIC_PATH = checkEnvVariable("JSMVCFW_APP_PUBLIC_PATH", process.env.JSMVCFW_APP_PUBLIC_PATH);
+const PORT_HTTPS = checkEnvVariable("JSMVCFW_APP_PORT_HTTPS", process.env.JSMVCFW_APP_PORT_HTTPS);
 
 process.env["IGNORE_MOBX_MINIFY_WARNING"] = DEBUG;
 
@@ -33,10 +35,12 @@ module.exports = {
         historyApiFallback: true,
         static: "public",
         hot: true,
-        https: true,
-        https: {
-            key: Fs.readFileSync("/home/root/certificate/tls.key"),
-            cert: Fs.readFileSync("/home/root/certificate/tls.crt")
+        server: {
+            type: "https",
+            options: {
+                key: Fs.readFileSync("/home/root/certificate/tls.key"),
+                cert: Fs.readFileSync("/home/root/certificate/tls.crt")
+            }
         }
     },
     mode: NODE_ENV,

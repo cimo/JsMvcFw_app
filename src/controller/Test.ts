@@ -1,8 +1,8 @@
 import { Icontroller, IitemList, variableState, storeGet, storeSet, navigateTo, sendRequest, writeLog } from "jsmvcfw/dist/";
 
 // Source
-import { IrequestResponse } from "@/model/Test";
-import viewTest from "@/view/Test";
+import { IrequestResponse } from "../model/Test";
+import viewTest from "../view/Test";
 
 const test = (): Icontroller => {
     return {
@@ -13,7 +13,7 @@ const test = (): Icontroller => {
                 buttonSendRequestPost: variableState<HTMLElement | undefined>(undefined),
                 buttonSendRequestGet: variableState<HTMLElement | undefined>(undefined),
                 containerResponse: variableState<HTMLElement | undefined>(undefined)
-            }
+            };
         },
         create(variableList) {
             writeLog("/Controller/Test.ts", "create", {});
@@ -42,46 +42,48 @@ const test = (): Icontroller => {
             const containerResponseElement = document.querySelector("#containerResponse") as HTMLElement;
 
             //if (variableList.buttonHome.state) {
-                buttonHomeElement.addEventListener("click", () => {
-                    navigateTo(undefined, "/");
-                });
+            buttonHomeElement.addEventListener("click", () => {
+                navigateTo(undefined, "/");
+            });
 
-                variableList.buttonHome.state = buttonHomeElement;
+            variableList.buttonHome.state = buttonHomeElement;
             //}
 
             if (containerResponseElement) {
                 //if (variableList.buttonSendRequestPost.state) {
-                    buttonSendRequestPostElement.addEventListener("click", () => {
-                        containerResponseElement.innerHTML = "";
+                buttonSendRequestPostElement.addEventListener("click", () => {
+                    containerResponseElement.innerHTML = "";
 
-                        sendRequest<IrequestResponse>("https://c5cf11f2-1a2a-4e41-9679-14b99d59bf39.mock.pstmn.io/requestPost", "POST", { a: 1 })
+                    sendRequest<IrequestResponse>("https://c5cf11f2-1a2a-4e41-9679-14b99d59bf39.mock.pstmn.io/requestPost", "POST", { a: 1 })
                         .then((response) => {
                             writeLog("/Controller/Test.ts", "sendRequest - post - then", { response });
 
                             containerResponseElement.innerHTML = response.data;
-                        }).catch((reason: string) => {
+                        })
+                        .catch((reason: string) => {
                             writeLog("/Controller/Test.ts", "sendRequest - post - catch", { reason });
                         });
-                    });
+                });
 
-                    variableList.buttonSendRequestPost.state = buttonSendRequestPostElement;
+                variableList.buttonSendRequestPost.state = buttonSendRequestPostElement;
                 //}
 
                 //if (variableList.buttonSendRequestGet.state) {
-                    buttonSendRequestGetElement.addEventListener("click", () => {
-                        containerResponseElement.innerHTML = "";
+                buttonSendRequestGetElement.addEventListener("click", () => {
+                    containerResponseElement.innerHTML = "";
 
-                        sendRequest<IrequestResponse>("https://c5cf11f2-1a2a-4e41-9679-14b99d59bf39.mock.pstmn.io/requestGet", "GET")
+                    sendRequest<IrequestResponse>("https://c5cf11f2-1a2a-4e41-9679-14b99d59bf39.mock.pstmn.io/requestGet", "GET")
                         .then((response) => {
                             writeLog("/Controller/Test.ts", "sendRequest - get - then", { response });
 
                             containerResponseElement.innerHTML = response.data;
-                        }).catch((reason: string) => {
+                        })
+                        .catch((reason: string) => {
                             writeLog("/Controller/Test.ts", "sendRequest - get - catch", { reason });
                         });
-                    });
+                });
 
-                    variableList.buttonSendRequestGet.state = buttonSendRequestGetElement;
+                variableList.buttonSendRequestGet.state = buttonSendRequestGetElement;
                 //}
 
                 variableList.containerResponse.state = containerResponseElement;
@@ -90,7 +92,7 @@ const test = (): Icontroller => {
         destroy() {
             writeLog("/Controller/Test.ts", "destroy", {});
         }
-    }
-}
+    };
+};
 
 export default test;
