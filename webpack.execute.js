@@ -20,7 +20,7 @@ checkEnvVariable("DOMAIN", process.env.DOMAIN);
 const NODE_ENV = checkEnvVariable("JSMVCFW_APP_NODE_ENV", process.env.JSMVCFW_APP_NODE_ENV);
 const DEBUG = checkEnvVariable("JSMVCFW_APP_DEBUG", process.env.JSMVCFW_APP_DEBUG);
 const PUBLIC_PATH = checkEnvVariable("JSMVCFW_APP_PUBLIC_PATH", process.env.JSMVCFW_APP_PUBLIC_PATH);
-const PORT_HTTPS = checkEnvVariable("JSMVCFW_APP_PORT_HTTPS", process.env.JSMVCFW_APP_PORT_HTTPS);
+const SERVER_PORT = checkEnvVariable("JSMVCFW_APP_SERVER_PORT", process.env.JSMVCFW_APP_SERVER_PORT);
 
 process.env["IGNORE_MOBX_MINIFY_WARNING"] = DEBUG;
 
@@ -31,7 +31,7 @@ module.exports = {
     },
     devtool: "cheap-module-source-map",
     devServer: {
-        port: PORT_HTTPS,
+        port: SERVER_PORT,
         historyApiFallback: true,
         static: "public",
         hot: true,
