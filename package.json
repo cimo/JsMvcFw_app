@@ -10,7 +10,7 @@
     },
     "main": "./src/index.ts",
     "scripts": {
-        "preinstall": "npm install --package-lock-only --ignore-scripts --no-audit && npx --yes npm-force-resolutions@0.0.3",
+        "preinstall": "([ ! -f package-lock.json ] && npm install --package-lock-only --ignore-scripts --no-audit); npx npm-force-resolutions",
         "sass": "sass --watch ./src/style/main.scss ./public/css/main.css",
         "check": "eslint . --fix",
         "link": "npm link /home/root/project/jsmvcfw/root/",
