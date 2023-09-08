@@ -1,5 +1,5 @@
 {
-    "name": "jsmvcfw_app",
+    "name": "@cimo/jsmvcfw_app",
     "version": "1.0.0",
     "description": "App created with JsMvcFw",
     "author": "cimo",
@@ -11,9 +11,9 @@
     "main": "./src/index.ts",
     "scripts": {
         "preinstall": "([ ! -f package-lock.json ] && npm install --package-lock-only --ignore-scripts --no-audit); npx npm-force-resolutions",
+        "link": "npm link /home/root/project/jsmvcfw/root/",
         "sass": "sass --watch ./src/style/main.scss ./public/css/main.css",
         "check": "eslint . --fix",
-        "link": "npm link /home/root/project/jsmvcfw/root/",
         "execute": "npm run check && webpack serve --config webpack.execute.js",
         "build": "npm run check && webpack --config webpack.build.js"
     },
