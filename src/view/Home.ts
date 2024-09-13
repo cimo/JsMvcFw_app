@@ -1,25 +1,23 @@
-import { Iview, IvariableState } from "jsmvcfw/dist/";
+import { IvariableState, Iview } from "../jsmvcfw/JsMvcFwInterface";
 
 // Source
-import { IcontrollerHome } from "../model/Home";
+//import { IdataMain } from "../model/Home";
 
-const home = (variableList: Record<string, IvariableState>): Iview => {
+const viewHome = (variableList: Record<string, IvariableState>): Iview => {
     return {
         content: String.raw`
         <div>
-            <a href="/test">Go to TEST - Link</a>
             <div>
-                <button id="buttonTest">Go to TEST</button>
                 <button id="buttonCounter">Increase counter</button>
             </div>
             <p> Total: ${(() => {
-                const a = 1 + 1;
+                const total = 1 + 1;
 
-                return a;
+                return total;
             })()}</p>
             <p>Counter: ${variableList.varCounter.state}</p>
         </div>`
     };
 };
 
-export default home;
+export default viewHome;

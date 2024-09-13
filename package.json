@@ -1,7 +1,7 @@
 {
     "name": "@cimo/jsmvcfw_app",
     "version": "1.0.0",
-    "description": "App created with JsMvcFw",
+    "description": "App created with JsMvcFw.",
     "author": "cimo",
     "license": "MIT",
     "repository": {
@@ -11,32 +11,34 @@
     "main": "./src/index.ts",
     "scripts": {
         "preinstall": "([ ! -f package-lock.json ] && npm install --package-lock-only --ignore-scripts --no-audit); npx npm-force-resolutions",
-        "link": "npm link /home/root/project/jsmvcfw/root/",
-        "sass": "sass --watch ./src/style/main.scss ./public/css/main.css",
-        "check": "eslint . --fix",
-        "execute": "npm run check && webpack serve --config webpack.execute.js",
-        "build": "npm run check && webpack --config webpack.build.js"
+        "remove_public_js": "node -e \"const fs = require('fs'); try{ fs.rmdirSync('./public/js/', { recursive: true }) } catch{}; process.exit(0);\"",
+        "sass": "sass ./src/style/main.scss ./public/style/main.css",
+        "check": "eslint --fix",
+        "build": "npm run remove_public_js && npm run sass && webpack --config webpack.build.js",
+        "execute": "nodemon --config nodemon.json"
     },
-    "dependencies": {},
+    "dependencies": {
+        "@cimo/request": "1.4.10"
+    },
     "devDependencies": {
-        "@types/node": "18.14.4",
-        "@typescript-eslint/parser": "5.54.0",
-        "@typescript-eslint/eslint-plugin": "5.54.0",
         "eslint": "8.35.0",
         "eslint-plugin-prettier": "4.2.1",
         "eslint-config-prettier": "8.8.0",
+        "eslint-webpack-plugin": "4.0.1",
         "prettier": "2.8.7",
         "typescript": "4.9.4",
+        "sass": "1.57.1",
+        "nodemon": "2.0.21",
         "webpack": "5.79.0",
         "webpack-cli": "5.0.1",
-        "webpack-dev-server": "4.11.1",
-        "clean-webpack-plugin": "4.0.0",
+        "terser-webpack-plugin": "5.3.9",
         "compression-webpack-plugin": "10.0.0",
-        "copy-webpack-plugin": "11.0.0",
-        "html-webpack-plugin": "5.5.0",
+        "html-webpack-plugin": "5.6.0",
         "ts-loader": "9.4.2",
         "dotenv": "16.0.3",
-        "sass": "1.57.1"
+        "@typescript-eslint/eslint-plugin": "5.54.0",
+        "@typescript-eslint/parser": "5.54.0",
+        "@types/node": "18.14.4"
     },
     "resolutions": {
         "node-fetch": "2.6.7",
