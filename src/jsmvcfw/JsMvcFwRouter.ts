@@ -4,7 +4,7 @@ import { urlRoot, writeLog } from "./JsMvcFw";
 let elementRoot: Element | null = null;
 let routerList: Irouter[] = [];
 const controllerList: Icontroller[] = [];
-const variableList: Record<string, IvariableState>[] = [];
+const variableList: Record<string, IvariableState<unknown>>[] = [];
 
 export const routerInit = (routerListValue: Irouter[]) => {
     elementRoot = document.querySelector("#jsmvcfw_app");
@@ -33,8 +33,8 @@ export const routerInit = (routerListValue: Irouter[]) => {
         }
     };
 
-    window.onunload = (event: Event) => {
-        writeLog("JsMvcFwRouter.ts - onunload", { event });
+    window.onbeforeunload = (event: Event) => {
+        writeLog("JsMvcFwRouter.ts - onbeforeunload", { event });
 
         if (event) {
             for (const [key, value] of controllerList.entries()) {

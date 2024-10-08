@@ -1,12 +1,11 @@
-import { IvariableState, Icontroller } from "../jsmvcfw/JsMvcFwInterface";
+import { Icontroller } from "../jsmvcfw/JsMvcFwInterface";
 import { writeLog, variableState } from "../jsmvcfw/JsMvcFw";
-import { initializeDom, observeDomChanges } from "../jsmvcfw/JsMvcFwDom";
 
 // Source
-//import { IdataMain } from "../model/Home";
+import { IvariableList } from "../model/Home";
 import viewHome from "../view/Home";
 
-export default class ControllerHome implements Icontroller {
+export default class ControllerHome implements Icontroller<IvariableList> {
     // Variable
 
     // Method
@@ -14,24 +13,22 @@ export default class ControllerHome implements Icontroller {
         //...
     }
 
-    variableList(): Record<string, IvariableState> {
+    variableList(): IvariableList {
         return {
             elementButtonCounter: variableState<HTMLButtonElement | undefined>(undefined),
-            varCounter: variableState<number>(0)
+            counter: variableState<number>(0),
+            test: variableState<number>(0)
         };
     }
 
-    view(variableList: Record<string, IvariableState>): string {
+    view(variableList: IvariableList): string {
         writeLog("/controller/Home.ts - view", variableList);
 
         return viewHome(variableList).content;
     }
 
-    event(variableList: Record<string, IvariableState>): void {
+    event(variableList: IvariableList): void {
         writeLog("/controller/Home.ts - event", variableList);
-
-        initializeDom(variableList);
-        observeDomChanges(variableList);
 
         const test = document.querySelector("#buttonCounter") as HTMLButtonElement;
         variableList.elementButtonCounter.state = test;
@@ -39,11 +36,15 @@ export default class ControllerHome implements Icontroller {
         let count = 0;
 
         test.onclick = () => {
-            variableList.varCounter.state = count++;
+            count++;
+
+            variableList.counter.state = count;
+
+            variableList.test.state = count + 1;
         };
     }
 
-    destroy(variableList: Record<string, IvariableState>): void {
+    destroy(variableList: IvariableList): void {
         writeLog("/controller/Home.ts - destroy", variableList);
     }
 }

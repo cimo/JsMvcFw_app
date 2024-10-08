@@ -6,17 +6,12 @@ const EsLintPlugin = require("eslint-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 
 const checkEnv = (key, value) => {
-    // eslint-disable-next-line no-console
-    console.log("JsMvcFw.ts - checkEnv", { key, value });
-
-    if (value === undefined) {
-        const text = `${key} is not defined!`;
-
-        document.body.innerHTML = text;
-        throw new Error(text);
+    if (typeof process !== "undefined" && value === undefined) {
+        // eslint-disable-next-line no-console
+        console.log("JsMvcFw.ts - checkEnv", { key, value });
     }
 
-    return value;
+    return value ? value : "";
 };
 
 // Source

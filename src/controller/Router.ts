@@ -1,4 +1,4 @@
-import { Irouter } from "../jsmvcfw/JsMvcFwInterface";
+import { Irouter, Icontroller } from "../jsmvcfw/JsMvcFwInterface";
 
 // Source
 import ControllerHome from "./Home";
@@ -13,7 +13,7 @@ export default class ControllerRouter {
             {
                 title: "HOME",
                 path: "/",
-                controller: () => new ControllerHome()
+                controller: () => new ControllerHome() as unknown as Icontroller
             }
         ];
     }

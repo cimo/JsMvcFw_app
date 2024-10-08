@@ -18,51 +18,15 @@ export const writeLog = (tag: string, value: string | Record<string, unknown>) =
     }
 };
 
-export const checkEnv = (key: string, value: string): string => {
-    writeLog("JsMvcFw.ts - checkEnv", { key, value });
-
-    if (value === undefined) {
-        const text = `${key} is not defined!`;
-
-        document.body.innerHTML = text;
-        throw new Error(text);
+export const checkEnv = (key: string, value: string | undefined): string => {
+    if (typeof process !== "undefined" && value === undefined) {
+        writeLog("JsMvcFw.ts - checkEnv()", `${key} is not defined!`);
     }
 
-    return value;
+    return value ? value : "";
 };
 
-export const writeCookie = <T>(tag: string, value: T, expire = "", httpOnly = "", path = "/"): void => {
-    const encodedData = window.btoa(encodeURIComponent(JSON.stringify(value)));
-
-    document.cookie = `${tag}=${encodedData};expires=${expire};${httpOnly};path=${path};Secure`;
-};
-
-export const readCookie = <T>(tag: string): T | undefined => {
-    let result: T | undefined;
-
-    const name = escapeRegExp(tag);
-    const resultMatch = document.cookie.match(new RegExp(`${name}=([^;]+)`));
-
-    if (resultMatch) {
-        let cookie = resultMatch[1];
-
-        if (isBase64(cookie.replaceAll('"', ""))) {
-            cookie = window.atob(cookie.replaceAll('"', ""));
-        }
-
-        const decodeUriCookie = decodeURIComponent(cookie);
-
-        if (isJson(decodeUriCookie)) {
-            result = JSON.parse(decodeUriCookie) as T;
-        } else {
-            result = decodeUriCookie as T;
-        }
-    }
-
-    return result;
-};
-
-export const variableState = <T>(variableValue: T): IvariableState => {
+export const variableState = <T>(variableValue: T): IvariableState<T> => {
     writeLog("JsMvcFw.ts - variableState", { variableValue });
 
     const randomTag = Math.floor(Math.random() * 1000000).toString();
@@ -71,8 +35,8 @@ export const variableState = <T>(variableValue: T): IvariableState => {
     const privateEvent = new Event(randomTag);
 
     return {
-        set state(stateValue: T) {
-            privateValue = stateValue;
+        set state(newValue: T) {
+            privateValue = newValue;
 
             writeLog("JsMvcFw.ts - variableState - set state", { privateValue });
 
@@ -83,29 +47,14 @@ export const variableState = <T>(variableValue: T): IvariableState => {
 
             return privateValue;
         },
-        listener: (callback: (privateValue: T) => void) => {
+        listener: (callback: (callbackValue?: T) => void) => {
             document.addEventListener(randomTag, () => {
+                writeLog("JsMvcFw.ts - variableState - listener", { privateValue });
+
                 if (callback) {
                     callback(privateValue);
                 }
             });
         }
     };
-};
-
-const escapeRegExp = (value: string): string => {
-    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-};
-
-const isBase64 = (value: string): boolean => {
-    return /^[A-Za-z0-9+/]*={0,2}$/.test(value) && value.length % 4 === 0;
-};
-
-const isJson = (value: string): boolean => {
-    return /^[\],:{}\s]*$/.test(
-        value
-            .replace(/\\["\\/bfnrtu]/g, "@")
-            .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?/g, "]")
-            .replace(/(?:^|:|,)(?:\s*\[)+/g, "")
-    );
 };

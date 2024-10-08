@@ -1,6 +1,6 @@
-export interface IvariableState {
-    state: unknown;
-    listener: (callback: <T>(parameter: T) => void) => void;
+export interface IvariableState<T> {
+    state: T;
+    listener: (callback: (parameter?: T) => void) => void;
 }
 
 export interface Irouter {
@@ -9,11 +9,11 @@ export interface Irouter {
     controller(): Icontroller;
 }
 
-export interface Icontroller {
-    variableList: () => Record<string, IvariableState>;
-    view: (variableList: Record<string, IvariableState>) => string;
-    event: (variableList: Record<string, IvariableState>) => void;
-    destroy: (variableList: Record<string, IvariableState>) => void;
+export interface Icontroller<T = Record<string, IvariableState<unknown>>> {
+    variableList: () => T;
+    view: (variableList: T) => string;
+    event: (variableList: T) => void;
+    destroy: (variableList: T) => void;
 }
 
 export interface Iview {
