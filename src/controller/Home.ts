@@ -1,5 +1,6 @@
 import { Icontroller } from "../jsmvcfw/JsMvcFwInterface";
 import { writeLog, variableState } from "../jsmvcfw/JsMvcFw";
+import { navigateTo } from "../jsmvcfw/JsMvcFwRouter";
 
 // Source
 import { IvariableList } from "../model/Home";
@@ -7,41 +8,37 @@ import viewHome from "../view/Home";
 
 export default class ControllerHome implements Icontroller<IvariableList> {
     // Variable
+    private elementButton: HTMLButtonElement | null;
 
     // Method
     constructor() {
-        //...
+        this.elementButton = null;
     }
 
-    variableList(): IvariableList {
+    variable(): IvariableList {
         return {
-            elementButtonCounter: variableState<HTMLButtonElement | undefined>(undefined),
-            counter: variableState<number>(0),
-            test: variableState<number>(0)
+            label: variableState<string>("label", "")
         };
     }
 
     view(variableList: IvariableList): string {
         writeLog("/controller/Home.ts - view", variableList);
 
-        return viewHome(variableList).content;
+        return viewHome(variableList).template;
     }
 
     event(variableList: IvariableList): void {
         writeLog("/controller/Home.ts - event", variableList);
 
-        const test = document.querySelector("#buttonCounter") as HTMLButtonElement;
-        variableList.elementButtonCounter.state = test;
+        this.elementButton = document.querySelector<HTMLButtonElement>("#go_to");
 
-        let count = 0;
+        if (this.elementButton) {
+            this.elementButton.onclick = () => {
+                navigateTo("/test");
+            };
+        }
 
-        test.onclick = () => {
-            count++;
-
-            variableList.counter.state = count;
-
-            variableList.test.state = count + 1;
-        };
+        variableList.label.state = "1 + 1";
     }
 
     destroy(variableList: IvariableList): void {

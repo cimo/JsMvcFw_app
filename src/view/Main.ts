@@ -4,7 +4,7 @@ import { routerInit } from "../jsmvcfw/JsMvcFwRouter";
 // Source
 import ControllerRouter from "../controller/Router";
 
-mainInit(true, "/");
+mainInit(true, "/", "jsmvcfw_app");
 
 const controllerRouter = new ControllerRouter();
 
