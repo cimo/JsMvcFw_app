@@ -1,6 +1,6 @@
-import { Icontroller } from "../jsmvcfw/JsMvcFwInterface";
-import { writeLog, variableState } from "../jsmvcfw/JsMvcFw";
-import { navigateTo } from "../jsmvcfw/JsMvcFwRouter";
+import { Icontroller } from "@cimo/jsmvcfw/dist/JsMvcFwInterface";
+import { writeLog, variableState } from "@cimo/jsmvcfw/dist/JsMvcFw";
+import { navigateTo } from "@cimo/jsmvcfw/dist/JsMvcFwRouter";
 
 // Source
 import { IvariableList } from "../model/Test";

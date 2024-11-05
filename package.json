@@ -1,7 +1,7 @@
 {
     "name": "@cimo/jsmvcfw_app",
     "version": "1.0.0",
-    "description": "App created with JsMvcFw.",
+    "description": "Demo app created with JsMvcFw.",
     "author": "cimo",
     "license": "MIT",
     "repository": {
@@ -18,7 +18,7 @@
         "execute": "nodemon --config nodemon.json"
     },
     "dependencies": {
-        "@cimo/request": "1.4.10"
+        "@cimo/jsmvcfw": "1.0.0"
     },
     "devDependencies": {
         "eslint": "8.35.0",

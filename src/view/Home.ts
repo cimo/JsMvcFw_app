@@ -1,4 +1,4 @@
-import { Iview } from "../jsmvcfw/JsMvcFwInterface";
+import { Iview } from "@cimo/jsmvcfw/dist/JsMvcFwInterface";
 
 // Source
 import { IvariableList } from "../model/Home";
@@ -13,7 +13,7 @@ const viewHome = (variableList: IvariableList): Iview => {
                 return total;
             })()}
         </p>
-        <button id="go_to">go to test page</button>
+        <button class="button_primary" id="go_to">go to test page</button>
     </div>`;
 
     return {

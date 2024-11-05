@@ -5,17 +5,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const EsLintPlugin = require("eslint-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 
-const checkEnv = (key, value) => {
-    if (typeof process !== "undefined" && value === undefined) {
-        // eslint-disable-next-line no-console
-        console.log("JsMvcFw.ts - checkEnv", { key, value });
-    }
-
-    return value ? value : "";
-};
-
 // Source
-//const { checkEnv } = require("@cimo/jsmvcfw/dist");
+const { checkEnv } = require("@cimo/jsmvcfw/dist");
 
 const ENV_NAME = checkEnv("ENV_NAME", process.env.ENV_NAME);
 

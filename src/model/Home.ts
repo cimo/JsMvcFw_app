@@ -1,4 +1,4 @@
-import { IvariableState } from "../jsmvcfw/JsMvcFwInterface";
+import { IvariableState } from "@cimo/jsmvcfw/dist/JsMvcFwInterface";
 
 export type IvariableList = {
     label: IvariableState<string>;
