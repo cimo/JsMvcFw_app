@@ -18,7 +18,7 @@
         "execute": "nodemon --config nodemon.json"
     },
     "dependencies": {
-        "@cimo/jsmvcfw": "1.0.1"
+        "@cimo/jsmvcfw": "1.0.2"
     },
     "devDependencies": {
         "eslint": "8.35.0",
